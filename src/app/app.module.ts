@@ -3,14 +3,36 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PostDashboardComponent } from './shared/components/post-dashboard/post-dashboard.component';
+import { PostComponent } from './shared/components/post/post.component';
+import { PostFormComponent } from './shared/components/post-form/post-form.component';
+import { PostCardComponent } from './shared/components/post-card/post-card.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { HttpClientModule } from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './shared/module/material/material.module';
+import { SummaryPipe } from './shared/pipe/summary.pipe';
+import { GetConfirmComponent } from './shared/components/get-confirm/get-confirm.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostDashboardComponent,
+    PostComponent,
+    PostFormComponent,
+    PostCardComponent,
+    NavbarComponent,
+    SummaryPipe,
+    GetConfirmComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

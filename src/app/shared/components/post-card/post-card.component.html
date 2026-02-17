@@ -1,0 +1,13 @@
+
+
+<div class="card h-100">
+    <div class="card-body">
+        <h2>{{post.title}}</h2>
+
+        <p>{{post.content | summary}} </p>
+
+        <button
+        [routerLink]="[post.postId]"
+        class="btn-block" mat-raised-button color="accent">Read More...</button>
+    </div>
+</div>

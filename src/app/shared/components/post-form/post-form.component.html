@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card mt-4">
+    <div class="card-body">
+
+        <h2><strong class="text-warning">
+            {{isInEditMode ? 'Update Post' : 'Add Post'}}
+        </strong></h2>
+        <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+            <div class="form-group">
+                <label for="title">Title <sup class="text-danger">*</sup></label>
+                <input formControlName="title" type="text" class="form-control">
+
+                <strong class="text-danger" *ngIf="title.touched && title.hasError('required')">
+                    Title Field is Required!!!
+                </strong>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content <sup class="text-danger">*</sup></label>
+                <textarea formControlName="content" type="text" rows="4" class="form-control"></textarea>
+
+                <strong class="text-danger" *ngIf="content.touched && content.hasError('required')">
+                    Content Field is Required!!!
+                </strong>
+            </div>
+
+            <button
+            *ngIf="!isInEditMode"
+            class="btn-block" mat-raised-button color="primary">Add Post</button>
+            <button
+            *ngIf="isInEditMode"
+            (click)="onUpdate()"
+            type="button"
+            class="btn-block" mat-raised-button color="accent">Update Post</button>
+            
+        </form>
+    </div>
+</div>
+    </div>
+</div>
