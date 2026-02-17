@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Ipost } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-post-form',
@@ -17,7 +18,8 @@ export class PostFormComponent implements OnInit {
   constructor(
     private _postService : PostService,
     private _router : Router,
-    private _routes : ActivatedRoute
+    private _routes : ActivatedRoute,
+    private _snackbar : SnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class PostFormComponent implements OnInit {
           console.log(data)
           this.postForm.reset()
           this._router.navigate(['posts'])
+          this._snackbar.openSnackBar(`The Post Added Successfully!!!`)
         },error : err => {
           console.log(err);
           
@@ -64,6 +67,7 @@ export class PostFormComponent implements OnInit {
       this._postService.fetchPostById(this.postId).subscribe({
         next: data => {
           this.postForm.patchValue(data)
+          this._snackbar.openSnackBar(`Your Data Patched Successfully!!!`)
         }
       })
     }
@@ -76,6 +80,7 @@ export class PostFormComponent implements OnInit {
         next: data => {
           console.log(data);
           this._router.navigate(['posts'])
+          this._snackbar.openSnackBar(`The Post Updated Successfully!!!`)
         },error : err => {
           console.log(err);
           

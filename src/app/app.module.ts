@@ -9,11 +9,12 @@ import { PostComponent } from './shared/components/post/post.component';
 import { PostFormComponent } from './shared/components/post-form/post-form.component';
 import { PostCardComponent } from './shared/components/post-card/post-card.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/module/material/material.module';
 import { SummaryPipe } from './shared/pipe/summary.pipe';
 import { GetConfirmComponent } from './shared/components/get-confirm/get-confirm.component';
+import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,13 @@ import { GetConfirmComponent } from './shared/components/get-confirm/get-confirm
     HttpClientModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
